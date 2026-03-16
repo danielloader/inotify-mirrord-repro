@@ -1,0 +1,10 @@
+agent:
+  privileged: true
+target:
+  path: deploy/inotify-repro
+  namespace: default
+feature:
+  network:
+    incoming: steal
+  fs: read
+  env: true

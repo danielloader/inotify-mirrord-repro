@@ -21,10 +21,10 @@ spec:
           imagePullPolicy: Always
           env:
             - name: CONFIG_PATH
-              value: /var/secrets/config/config.json
+              value: /example/mount/path/config.json
           volumeMounts:
             - name: config
-              mountPath: /var/secrets/config
+              mountPath: /example/mount/path
               readOnly: true
       volumes:
         - name: config
