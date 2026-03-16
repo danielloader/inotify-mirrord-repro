@@ -1,6 +1,6 @@
 # inotify-mirrord-repro
 
-Minimal reproduction for a mirrord bug where `filepath.EvalSymlinks` (which calls `lstat` on each path component) fails with `permission denied` when mirrord intercepts filesystem calls on Kubernetes secret volume mounts.
+Minimal reproduction for a mirrord bug where FSNotify events go wild.
 
 ## What the Application Does
 
