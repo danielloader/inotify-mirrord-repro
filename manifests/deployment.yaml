@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inotify-repro
+  namespace: default
+  labels:
+    app.kubernetes.io/name: inotify-repro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: inotify-repro
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: inotify-repro
+    spec:
+      containers:
+        - name: inotify-repro
+          image: ghcr.io/danielloader/inotify-mirrord-repro:main
+          imagePullPolicy: Always
+          env:
+            - name: CONFIG_PATH
+              value: /var/secrets/config/config.json
+          volumeMounts:
+            - name: config
+              mountPath: /var/secrets/config
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: inotify-repro-config
